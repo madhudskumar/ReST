@@ -5,5 +5,7 @@ app.get('/',function(req,res){
     res.send("hello welcome to api");
 });
 
-console.log("Server listining on 7777");
-app.listen(7777);
+
+var port = process.env.PORT || 7777;
+console.log("Server listining on " + port.toString());
+app.listen(port);
