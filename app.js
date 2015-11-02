@@ -1,13 +1,23 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var bodyparserr = require('body-parser');
 
 var db = mongoose.connect('mongodb://localhost/bookAPI');
 var book = require('./models/bookModel');
 
 var bookRouter = express.Router();
 
+app.use(bodyparserr.urlencoded({extended:true}));
+app.use(bodyparserr.json());
+
 bookRouter.route('/books')
+    .post(function(req,res){
+        var Book = new book(req.body);
+
+        console.log(Book);
+        res.send(Book);
+    })
     .get(function(req,res){
 
         var query = {};
@@ -44,7 +54,7 @@ bookRouter.route('/books/:id')
         });
     });
 
-app.use('/api', bookRouter); //  to use a specifick get / post router
+app.use('/api', bookRouter); //  to use a specific get / post router
 
 app.get('/',function(req,res){
     res.send("hello welcome to api");

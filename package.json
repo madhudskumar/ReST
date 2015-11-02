@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/madhudskumar/ReST#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "mongoose" : "^4.2.2"
+    "mongoose": "^4.2.2"
   }
 }
