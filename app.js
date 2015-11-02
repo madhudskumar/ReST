@@ -15,8 +15,9 @@ bookRouter.route('/books')
     .post(function(req,res){
         var Book = new book(req.body);
 
+        Book.save();
         console.log(Book);
-        res.send(Book);
+        res.status(201).send(Book);
     })
     .get(function(req,res){
 
