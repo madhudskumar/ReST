@@ -34,16 +34,32 @@ var routes = function(book){
         //res.json(book); // resend a json object
     });
 
-bookRouter.route('/books/:id')
+bookRouter.route('/:ID')
     .get(function(req,res){
-
-        book.findById(req.params.id ,function(err,book){
+        book.findById(req.params.ID ,function(err,book){
             if(err) {
                 //console.log(err);//not to implement
                 res.status(500).send(err);
             }
             else{
                 res.json(book);
+            }
+        });
+    })
+    .put(function(req,res){
+        book.findById(req.params.ID ,function(err,book){
+            if(err) {
+                //console.log(err);//not to implement
+                res.status(500).send(err);
+            }
+            else{
+                book.title = req.body.title;
+                book.author = req.body.author;
+                book.genre = req.body.genre;
+                book.read = req.body.read;
+                book.save();
+                res.status(200).json(book);
+                console.log(book);
             }
         });
     });
